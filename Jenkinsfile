@@ -22,6 +22,12 @@ pipeline
    steps{
     sh 'mvn compile'
    }
+   
+   stage('artifacts will get created')
+   {
+   steps{
+    sh 'mvn clean package'
+   }
    }
  }
 }
