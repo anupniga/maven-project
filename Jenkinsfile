@@ -17,5 +17,11 @@ pipeline
 	 }
    }
    }
+   stage('compile code')
+   {
+   steps{
+    sh 'mvn compile'
+   }
+   }
  }
 }
