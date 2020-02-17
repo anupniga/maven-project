@@ -23,11 +23,17 @@ pipeline
     sh 'mvn compile'
    }
    }
-   stage('clean the package code')
+   stage('genearate the war file using package')
    {
    steps{
     sh 'mvn clean package'
    }
+   }
+   stage('archive the artifacts')
+   {
+    steps{
+	 archiveArtifacts '**/*.war'
+	}
    }
  }
 }
