@@ -1,39 +1,19 @@
-pipeline
-{
+pipeline {
  agent any
- stages{
-   stage('scm checkout')
-   {
-    steps{
-	  git branch: 'master', url: 'https://github.com/anupniga/maven-project'
-	}
+ stages {
+  stage('SCM checkout') {
+   steps {
+    git branch: 'master', url: 'https://github.com/anupniga/maven-project'
    }
-   stage('validate code')
-   {
+  }
+  stage('sonar and maven package') {
    steps{
-     withMaven(maven: 'localmaven')
-	 {
-	  sh 'mvn validate'
-	 }
+   withSonarQubeEnv(credentialsId: 'sonar') {
+      withMaven(maven:'localmaven') {
+	    sh 'clean mvn install sonar:sonar'
+	  }
    }
    }
-   stage('compile code')
-   {
-   steps{
-    sh 'mvn compile'
-   }
-   }
-   stage('genearate the war file using package')
-   {
-   steps{
-    sh 'mvn clean package'
-   }
-   }
-   stage('archive the artifacts')
-   {
-    steps{
-	 archiveArtifacts '**/*.war'
-	}
-   }
- }
+  }
+}
 }
