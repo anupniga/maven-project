@@ -1,0 +1,37 @@
+pipeline{
+ agent any
+  stages{
+   stage('SCM checkout')
+   {
+   steps
+    { git branch: 'master', url: 'https://github.com/anupniga/maven-project' }
+   
+   }
+   
+   stage('Parallel deployment')
+   {
+   parallel
+   {
+   stage('deploy to vm1')
+   
+   {
+   steps
+   {
+    sh 'echo hello world'
+   }
+   }
+   
+   stage('deploy to vm2')
+   {
+   steps{
+   sh 'echo hi world'
+   
+   }
+   }
+   
+   },failfast:true
+   }
+}
+}
+
+
