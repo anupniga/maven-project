@@ -17,19 +17,19 @@ pipeline{
    {
    steps
    {
-    sh 'echo hello world'
+    sh 'echo "hello world"'
    }
    }
    
    stage('deploy to vm2')
    {
    steps{
-   sh 'echo hi world'
+   sh 'echo "hi world"'
    
    }
    }
    
-   },failfast:true
+   }
    }
 }
 }
