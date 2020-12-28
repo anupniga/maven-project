@@ -3,8 +3,12 @@ pipeline {
  stages {
   stage('SCM checkout') {
    steps {
+	   withCredentials([usernamePassword(credentialsId: 'githublocal', passwordVariable: 'pass', usernameVariable: 'user')]) {
+    
+
     git branch: 'master', url: 'https://github.com/anupniga/maven-project'
    }
+  }
   }
   stage('sonar and maven package') {
    steps{
