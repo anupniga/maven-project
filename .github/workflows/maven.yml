@@ -1,4 +1,4 @@
-: Java CI with Maven
+Java CI with Maven
 
 on:
   push:
@@ -26,4 +26,4 @@ jobs:
          image: anupniga/githubactions
          registry: docker.io
          username: ${{secrets.DOCKER_USERNAME}}
-         password : ${{seASSWORD}}
+         password: ${{secrets.DOCKER_PASSWORD}}
